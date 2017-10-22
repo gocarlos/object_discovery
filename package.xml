@@ -1,0 +1,38 @@
+<package format="2">
+  <name>object_discovery</name>
+  <version>0.0.1</version>
+
+  <description>
+    Object_discovery package. This package can segment
+    multiple objects from a given point cloud / ROS Mesh. It has a ROS
+    wrapper which provides services and publishes the result in ROS
+    topics. More information about the original segmentation
+    capabilities on:
+    http://cs.stanford.edu/people/karpathy/discovery/
+  </description>
+
+  <author>Andrej Karpathy, Stephen Miller, Li Fei-Fei</author>
+  <maintainer email="gocarlos@ethz.ch">Carlos Gomes</maintainer>
+  <maintainer email="fadri.furrer@mavt.ethz.ch">Fadri Furrer</maintainer>
+  <maintainer email="tonci.novkovic@mavt.ethz.ch">Tonci Novkovic</maintainer>
+
+  <url>http://cs.stanford.edu/people/karpathy/discovery/</url>
+  <url type="repository">https://github.com/ethz-asl/object_discovery/</url>
+  <license>TODO</license>
+
+  <!-- Use buildtool_depend for build tool packages: -->
+  <buildtool_depend>catkin</buildtool_depend>
+  <buildtool_depend>catkin_simple</buildtool_depend>
+
+  <depend>glog_catkin</depend>
+  <depend>message_generation</depend>
+  <depend>message_runtime</depend>
+  <depend>pcl_ros</depend>
+  <depend>pcl_catkin</depend>
+  <depend>pcl_conversions</depend>
+  <depend>roscpp</depend>
+  <depend>sensor_msgs</depend>
+  <depend>std_msgs</depend>
+  <depend>shape_msgs</depend>
+   
+</package>

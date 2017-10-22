@@ -1,0 +1,74 @@
+# File containing the settings for object_discovery.
+
+# Parameters for topics, frame_id's etc. 
+object_discovery:
+  pub_topics: 
+    segmented_objects_topic: segmented_objects
+    segmented_cloud_topic: segmented_clouds
+    segment_objects_visualisation_topic: segment_objects_visualisation
+    scene_mesh_visualization_topic: scene_mesh_visualisation
+  sub_topics: 
+    scene_point_cloud_topic: /scene_point_cloud
+    scene_mesh_topic: /scene_mesh
+  services:
+    segment_scene_service_name: segment_scene
+    publish_scene_service_name: publish_segmented_objects
+# Parameters for the visualisation and output.  
+  visualisation: 
+    obj_frame_id_name: world
+    
+  display: true
+  do_save: true
+  mesh_id: 0
+  
+  vertices_cleaning_tolerance: 0.0001
+  main_plane_offset_distance: 0.005
+  
+normals_extraction:
+  radius_search: 0.02    
+  set_polynomial_fit: true    
+  set_compute_normals: true
+
+# Parameters for the real segmentation. 
+segmentation_parameters:
+# Supporting surface for the objects are removed with RANSAC, this is the threshold in meters. 
+  plane_segmentation_distance_threshold: 0.005
+  dist_CoM_threshold: 0.08
+  
+  KTHRS: [0.1, 0.7, 0.8, 0.9, 1.0, 1.1, 1.2]
+  
+#TODO(gocarlos): the 3 following parameters are dependent of the mesh resultion, 
+# for different resolutions, one needs diff. parameters.
+   
+# minimum segment size, or it is merged to neighboring clusters during segmentation
+  MINSEGSIZE: 400 
+
+# hard objectness parameters
+# max and min number of points. These two are mostly just for efficiency
+  MINPTS: 550
+  MAXPTS: 4000
+  
+  THINTHR: 0.05
+  FLATTHR: 0.001
+  
+# minimum extent of a segment along minimal direction (in meters)
+  MINLENGTH: 0.02 
+# maximum extent of a segment along maximal direction (in meters)
+  MAXLENGTH: 0.25
+  
+# measure parameters
+
+# scaling factor for difference in normals wrt. difference in position for points,
+# when computing difference between two point clouds. 0 => Only look at difference between
+# point and its closest point. Higher value => matching normals are more important than point distances
+  SYMMETRY_MEASURE_CLOUD_NORMALS_TRADEOFF: 0.2;
+# used in Local Convexity measure for local neighborhood
+  LOCAL_CONVX_MEASURE_NNRADIUS: 0.0075
+# used in Smoothness measure for local neighborhood finding
+  SMOOTHNESS_MEASURE_NNRADIUS: 0.01
+# Number of bins in histogram. We found 8 to work best quite consistently.
+  SMOOTHNESS_MEASURE_NUMBINS: 8 
+
+# non-max suppression parameters
+# intersection over union threshold, during non-max suppression
+  IOUTHR: 0.8

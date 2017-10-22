@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Set debugging tool aka valgrind etc. -->
+  <arg name="debug" default="" />
+
+  <!-- Set logging level -->
+  <env name="ROSCONSOLE_CONFIG_FILE" value="$(find object_discovery)/launch/custom_rosconsole.conf" />
+
+  <!-- INITIALIZE OBJECT DISCOVERY SEGMENTATION: -->
+  <node pkg="object_discovery" name="object_discovery_node" type="object_discovery_node"
+    output="screen" launch-prefix="$(arg debug)">
+    <!-- load parameter for segmentation, visualisation etc. -->
+    <rosparam command="load"
+      file="$(find object_discovery)/config/object_discovery_parameters.yaml" />
+  </node>
+</launch>
